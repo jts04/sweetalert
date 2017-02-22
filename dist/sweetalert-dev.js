@@ -54,6 +54,7 @@ var _modulesSetParams2 = _interopRequireDefault(_modulesSetParams);
  * (We also use window.previousActiveElement as a global variable)
  */
 var previousWindowKeyDown;
+var previousWindowOnFocus;
 var lastFocusedButton;
 
 /*
@@ -149,6 +150,7 @@ exports['default'] = sweetAlert = swal = function () {
   (0, _modulesHandleSwalDom.getOverlay)().onclick = onButtonEvent;
 
   previousWindowKeyDown = window.onkeydown;
+  previousWindowOnFocus = window.onfocus;
 
   var onKeyEvent = function onKeyEvent(e) {
     return (0, _modulesHandleKey2['default'])(e, params, modal);
@@ -226,6 +228,7 @@ sweetAlert.close = swal.close = function () {
 
   // Reset the page to its previous state
   window.onkeydown = previousWindowKeyDown;
+  window.onfocus = previousWindowOnFocus;
   if (window.previousActiveElement) {
     window.previousActiveElement.focus();
   }
